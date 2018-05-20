@@ -102,7 +102,7 @@
 							}
 							
 							//send booking confirmation email
-							if(($mail = $this->Template->mail_booking_confirmation($booking, $user, $ride, $vehicle, $driver)) != null){
+							if(($mail = $this->Template->mail_booking_confirmation($booking, $this->User, $ride, $vehicle, $driver)) != null){
 								if(!$this->Model->sendMail($this->User->getEmailAddress(),
 									$mail['subject'], $mail['body'])){
 									// unable to send mail
