@@ -258,6 +258,7 @@
 			$mail->isSMTPSecure = "ssl";
 			
 			//TODO: comment SMTP options when going live
+			/*
 			$mail->SMTPOptions = [
 				'ssl' => [
 					'verify_peer' => false,
@@ -265,7 +266,7 @@
 					'allow_self_signed' => true,
 				],
 			];
-			
+			*/
 			$mail->Port = 587;
 			$mail->isHTML(true);
 			$mail->From = "auth.sharerideinc@gmail.com";
