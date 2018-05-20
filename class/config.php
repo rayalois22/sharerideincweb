@@ -1,7 +1,6 @@
 <?php 
 	class config{
 		public function __construct(){
-			//require_once $_SERVER['DOCUMENT_ROOT'] . 'conf.php';
 			require_once 'conf.php';
 			$this->db_params($CONF);
 			$this->site_conf($CONF);
@@ -29,8 +28,7 @@
 		
 		private function get_reader(){
 			if(!isset($_SESSION['reader'])){
-				//require_once $_SERVER['DOCUMENT_ROOT'] . 'reader.php';
-				require_once '/reader.php';
+				require_once 'reader.php';
 				$_SESSION['reader'] = $reader;
 			}
 		}
