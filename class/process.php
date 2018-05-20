@@ -260,7 +260,7 @@
 		public function sendMail($address, $subject, $message){
 			require_once 'lib' . DIRECTORY_SEPARATOR . $_SESSION['reader']['lib']['mailer'] . DIRECTORY_SEPARATOR . "PHPMailerAutoload.php";
 			$mail = new PHPMailer();
-			$mail->SMTPDebug = 1; // set to 0 when going live.
+			$mail->SMTPDebug = 0; // set to 0 when going live.
 			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";
 			$mail->SMTPAuth = true;
@@ -291,7 +291,7 @@
 				}
 			}
 			if(!$mail->send()){
-				echo 'Mailer Error: ' . $mail->ErrorInfo;
+				//echo 'Mailer Error: ' . $mail->ErrorInfo;
 				$response  = false;
 			} else {
 				$response = true;
