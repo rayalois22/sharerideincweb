@@ -281,8 +281,9 @@
 				}
 			}
 			if(!$mail->send()){
-				echo 'Mailer Error: ' . $mail->ErrorInfo;
+				//echo 'Mailer Error: ' . $mail->ErrorInfo;
 				$response  = false;
+				throw new Exception($mail->ErrorInfo);
 			} else {
 				$response = true;
 			}
