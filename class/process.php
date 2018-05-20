@@ -254,7 +254,7 @@
 		}
 		
 		public function sendMail($address, $subject, $message){
-			require_once $_SERVER['DOCUMENT_ROOT'] . 'lib' . DIRECTORY_SEPARATOR . $_SESSION['reader']['lib']['mailer'] . DIRECTORY_SEPARATOR . "PHPMailerAutoload.php";
+			require_once 'lib' . DIRECTORY_SEPARATOR . $_SESSION['reader']['lib']['mailer'] . DIRECTORY_SEPARATOR . "PHPMailerAutoload.php";
 			$mail = new PHPMailer();
 			$mail->SMTPDebug = 0; // set to 0 when going live.
 			$mail->isSMTP();
