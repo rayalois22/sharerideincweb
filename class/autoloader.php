@@ -13,15 +13,6 @@
 		} else {
 			spl_autoload_register('classesAutoload');
 		}
-	} else {
-		/**
-		 * Fall back to traditional autoload for old PHP versions
-		 * @param string $classname The name of the class to load
-		 */
-		function __autoload($classname)
-		{
-			classesAutoload($classname);
-		}
 	}
 	
 	// Creates the site controller object, passing it all the resources it
