@@ -1,7 +1,7 @@
 <?php 
 	class config{
 		public function __construct(){
-			require_once $_SERVER['DOCUMENT_ROOT'] . 'conf.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/conf.php';
 			$this->db_params($CONF);
 			$this->site_conf($CONF);
 			$this->get_reader();
