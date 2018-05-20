@@ -29,6 +29,11 @@
 			
 			// check that we are on the index page
 			if((basename($_SERVER['PHP_SELF'], '.php') == 'index')){
+				if(isset($_GET['Flogin'])){
+					//notify user of failed login attempt
+					header('Location: ./?login');
+					exit();
+				}
 				//checks whether the user is logged in
 				if(isset($_SESSION['SESS_USER'])){
 					//assigns the logged in user to the current user member 
@@ -130,7 +135,6 @@
 					$this->View->shareride_head();
 					$this->View->shareride_navigation(false, true, $this->User);
 					if(isset($_GET['give-a-ride'])){
-						//TODO: pass only vehicles owned by $this->User
 						$vehicles = [];
 						foreach($this->Data['vehicles'] as $vk => $vv){
 							if($this->User->getId() == $vv->getDriver()){
@@ -139,6 +143,11 @@
 						}
 						$SF->form_new_ride($vehicles);
 					} else {
+						if(isset($_GET['Tlogin'])){
+							// TODO: notify user of successful login before redirection.
+							header('Location: ./');
+							exit();
+						}
 						// display all future rides for user to book
 						$SF->form_book_ride($this->Data['futurerides']);
 					}
@@ -184,11 +193,11 @@
 							//automatically login the user following successful registration.
 							if(!$this->Model->login($_POST[$_SESSION['reader']['newuser']['email']['name']], $_POST[$_SESSION['reader']['newuser']['password']['name']])){
 								// failure
-								header('Location: ./?Flogin=false');
+								header('Location: ./?Flogin');
 								exit();
 							} else {
 								// success
-								header('Location: ./Flogin=true');
+								header('Location: ./?Tlogin');
 								exit();
 							}
 						}
@@ -196,11 +205,11 @@
 						//logs in the user
 						if(!$this->Model->login($_POST[$_SESSION['reader']['login']['email']['name']], $_POST[$_SESSION['reader']['login']['password']['name']])){
 							// failure
-							header('Location: ./?Flogin=false');
+							header('Location: ./?Flogin');
 							exit();
 						} else {
 							// success
-							header('Location: ./Flogin=true');
+							header('Location: ./?Tlogin');
 							exit();
 						}
 					} else {
