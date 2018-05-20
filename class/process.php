@@ -129,7 +129,7 @@
 				}
 				return false;
 			} catch(PDOException $e){
-				echo $e->getMessage();
+				//echo $e->getMessage();
 				return false;
 			}			
 		}
@@ -221,6 +221,17 @@
 			}
 		}
 		
+		public function viewBooking($rideId){
+			try{
+				$stmt = $this->PDO->prepare('SELECT * FROM `tbl_booking` WHERE `ride`=:ride');
+				$stmt->execute(['ride' => $rideId]);
+				$booking = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'booking', array_fill(0, 4, ''));
+				return $booking;
+			} catch(PDOException $e){
+				return null;
+			}
+		}
+		
 		public function updateRide($ride){
 			try {
 				$stmt = $this->PDO->prepare('UPDATE `tbl_ride` SET `origin`=:origin,
@@ -255,10 +266,9 @@
 			$mail->SMTPAuth = true;
 			$mail->Username = "auth.sharerideinc@gmail.com";
 			$mail->Password = "sharerideinc!2018!";
-			$mail->isSMTPSecure = "tls";
+			$mail->isSMTPSecure = "ssl";
 			
 			//TODO: comment SMTP options when going live
-			/*
 			$mail->SMTPOptions = [
 				'ssl' => [
 					'verify_peer' => false,
@@ -266,7 +276,7 @@
 					'allow_self_signed' => true,
 				],
 			];
-			*/
+			
 			$mail->Port = 587;
 			$mail->isHTML(true);
 			$mail->From = "auth.sharerideinc@gmail.com";
@@ -281,9 +291,8 @@
 				}
 			}
 			if(!$mail->send()){
-				//echo 'Mailer Error: ' . $mail->ErrorInfo;
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
 				$response  = false;
-				throw new Exception($mail->ErrorInfo);
 			} else {
 				$response = true;
 			}

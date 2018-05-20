@@ -84,11 +84,8 @@
 									// get the ride that was booked.
 									$ride = $ridev;
 									//gets the booking
-									foreach($this->Data['bookings'] as $bookingk => $bookingv){
-										if($ride->getId() == $bookingv->getRide()){
-											$booking = $bookingv;
-										}
-									}
+									$booking = $this->Model->viewBooking($ride->getId())[0];
+										
 									// gets the driver
 									foreach($this->Data['users'] as $userk => $user){
 										if($ride->getDriver() == $user->getId()){
@@ -123,8 +120,8 @@
 									// persists the change in the database.
 									if($this->Model->updateRide($ride)){
 										// successfully updated the ride.
-										header('Location: ./?bookingSuccess');
-										exit();
+										//header('Location: ./?bookingSuccess');
+										//exit();
 									}
 								}
 							}
