@@ -29,7 +29,8 @@
 		
 		private function get_reader(){
 			if(!isset($_SESSION['reader'])){
-				require_once $_SERVER['DOCUMENT_ROOT'] . 'reader.php';
+				//require_once $_SERVER['DOCUMENT_ROOT'] . 'reader.php';
+				require_once '/reader.php';
 				$_SESSION['reader'] = $reader;
 			}
 		}
