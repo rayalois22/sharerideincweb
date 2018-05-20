@@ -255,7 +255,7 @@
 			$mail->SMTPAuth = true;
 			$mail->Username = "auth.sharerideinc@gmail.com";
 			$mail->Password = "sharerideinc!2018!";
-			$mail->isSMTPSecure = "ssl";
+			$mail->isSMTPSecure = "tls";
 			
 			//TODO: comment SMTP options when going live
 			/*
