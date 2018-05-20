@@ -188,7 +188,7 @@
 								exit();
 							} else {
 								// success
-								header('Location: ./Flogin=true');
+								header('Location: ./?Flogin=true');
 								exit();
 							}
 						}

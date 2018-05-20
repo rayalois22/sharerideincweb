@@ -10,13 +10,6 @@
 			$this->BLOWFISH = new blowfish();
 		}
 		
-		public function get(){
-			$this->check_download_req();
-			$this->the_error();
-			$this->manage_users();
-			$this->manage_articles();
-		}
-		
 		public function show_index(){
 			$content = 
 			'<div class="container">
@@ -256,7 +249,7 @@
 		public function sendMail($address, $subject, $message){
 			require_once 'lib' . DIRECTORY_SEPARATOR . $_SESSION['reader']['lib']['mailer'] . DIRECTORY_SEPARATOR . "PHPMailerAutoload.php";
 			$mail = new PHPMailer();
-			$mail->SMTPDebug = 0; // set to 0 when going live.
+			$mail->SMTPDebug = 1; // set to 0 when going live.
 			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";
 			$mail->SMTPAuth = true;
@@ -265,7 +258,6 @@
 			$mail->isSMTPSecure = "ssl";
 			
 			//TODO: comment SMTP options when going live
-			/*
 			$mail->SMTPOptions = [
 				'ssl' => [
 					'verify_peer' => false,
@@ -273,7 +265,7 @@
 					'allow_self_signed' => true,
 				],
 			];
-			*/
+			
 			$mail->Port = 587;
 			$mail->isHTML(true);
 			$mail->From = "auth.sharerideinc@gmail.com";
