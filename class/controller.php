@@ -9,6 +9,7 @@
 		protected $Data;
 		
 		public function __construct($ConfigurationManager, $TemplateManager, $LayoutManager, $ModelManager){
+			//initializes the core components.
 			$this->Conf = $ConfigurationManager;
 			$this->Template = $TemplateManager;
 			$this->View = $LayoutManager;
@@ -16,7 +17,8 @@
 		}
 		
 		public function control(){
-			//gets the available data
+			// gets all the available data necessary to run the application efficiently.
+			// this data is updated whenever the browser window refreshes: see the setSessionData() method in /class/process.php 
 			$this->Model->setSessionData();
 			$this->Data['users'] = unserialize($_SESSION['data']['users']);
 			$this->Data['vehicles'] = unserialize($_SESSION['data']['vehicles']);
@@ -73,10 +75,17 @@
 					
 					//checks for booking requests
 					if(isset($_GET['book'])){
+						//stores the result for notification purposes.
+						$result = [
+							'success' => false,
+							'message' => '',
+						];
 						if($this->Model->bookRide(new booking(null, null,
 							$_GET['id'], $this->User->getId()
 						))){
 							// successfully booked the ride.
+							$result['success'] = true;
+							$result['message'] = 'Success, you have booked the ride.';
 							
 							//notifies the user of successful booking via mail.
 							foreach($this->Data['rides'] as $ridek => $ridev){
@@ -108,6 +117,7 @@
 									// unable to send mail
 								} else {
 									// mail sent successfully
+									$result['message'] = 'Success. You have booked ther ride and a confirmation email has been sent to you with the details.';
 								}
 							}
 							
@@ -115,13 +125,13 @@
 							foreach($this->Data['rides'] as $ridek => $ride){
 								// finds the ride that was booked 
 								if($_GET['id'] == $ride->getId()){
-									// change the status of the ride to make it a past ride since it is booked already.
+									// changes the status of the ride to make it a past ride since it is booked already.
 									$ride->setStatus(1);
 									// persists the change in the database.
 									if($this->Model->updateRide($ride)){
-										// successfully updated the ride.
-										//header('Location: ./?bookingSuccess');
-										//exit();
+										// successfully updated the ride, so redirect
+										header('Location: ./?bookingSuccess');
+										exit();
 									}
 								}
 							}
@@ -142,12 +152,17 @@
 					} else {
 						if(isset($_GET['Tlogin'])){
 							// TODO: notify user of successful login before redirection.
+							
+							//redirect to the home page
 							header('Location: ./');
+							//end script execution
 							exit();
 						}
-						// display all future rides for user to book
-						$SF->form_book_ride($this->Data['futurerides']);
+						// displays all future rides for user to book
+						$SF->form_book_ride($this->Data['futurerides'], $this->Data['users'], $this->Data['vehicles']);
+						$this->View->shareride_footer();
 					}
+					$this->View->shareride_footer();
 					
 					
 					
@@ -174,6 +189,7 @@
 							$this->View->shareride_head();
 							$this->View->shareride_navigation(true);
 							echo 'Failed to register!';
+							$this->View->shareride_footer();
 						} else {
 							//registration successful
 
@@ -210,8 +226,12 @@
 							exit();
 						}
 					} else {
+						// shows a different page if the user is not logged in.
 						$this->View->shareride_head();
 						$this->View->shareride_navigation(true);
+						if(!isset($_GET['signup']) && !isset($_GET['login'])){
+							$this->View->welcome();
+						}
 						if(isset($_GET['signup'])){
 							//presents the registration form
 							$SF->form_register();
@@ -220,6 +240,7 @@
 							// presents the login form
 							$SF->form_login();
 						}
+						$this->View->shareride_footer();
 					}					
 				}
 			}
