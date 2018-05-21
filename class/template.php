@@ -7,9 +7,9 @@
 			$mail = [];
 			$subject = 'Booking confirmation';
 			$body = 
-			'Dear '. ucwords($user->getFirstName()) . ', '.'
+			'<p>Dear '. ucwords($user->getFirstName()) . ', '.'</p>
 			<br /><br />
-			You have successfully booked a ride. Below are the details.
+			<p>You have successfully booked a ride. Below are the details.</p>
 			<br /><br />								
 			<table>
 				<tbody>
@@ -44,14 +44,14 @@
 				</tbody>
 			</table>
 			<br /><br />								
-			You can <a href="tel:'. $driver->getTelephone() .'">call</a> or <a href="mailto:'. $driver->getEmailAddress() .'">email</a> the driver to have the ride.
+			<p>You can <a href="tel:'. $driver->getTelephone() .'">call</a> or <a href="mailto:'. $driver->getEmailAddress() .'">email</a> the driver to have the ride.</p>
 			<br /><br />
-			Thank you for choosing '. CONF['site']['title'] . '.<br /><br />
+			<p>Thank you for choosing '. CONF['site']['title'] . '</p>.<br /><br />
 			
-			Regards,<br /><br />
+			<p>Regards,</p><br /><br />
 			
-			'. CONF['site']['title'] . ' Support Team,<br />
-			'. CONF['site']['copyright'];
+			<p>'. CONF['site']['title'] . ' Support Team,</p><br />
+			<p>'. CONF['site']['copyright'].'</p>';
 			$mail['subject'] = $subject;
 			$mail['body'] = $body;
 			return $mail;
@@ -64,14 +64,14 @@
 			$mail = [];
 			$subject = 'Account created.';
 			$message = 
-			'Dear '. $user .',
+			'<p>Dear '. $user .',</p>
 			<br /><br />
-			Congratulations!<br />
-			Your account has been created successfully.<br />
-			You can now <a href="'. CONF['site']['url'] .'">login</a> using your email address and password.<br />
-			We hope to see you give and/or find rides.<br /><br />
+			<p>Congratulations!<br />
+			<p>Your account has been created successfully.</p><br />
+			<p>You can now <a href="'. CONF['site']['url'] .'">login</a> using your email address and password.</p><br />
+			<p>We hope to see you give and/or find rides.</p><br /><br />
 			
-			PS: Please do not share your password with anyone.<br /><br />
+			<p>PS: Please do not share your password with anyone.</p><br /><br />
 			
 			Regards,<br /><br />
 			

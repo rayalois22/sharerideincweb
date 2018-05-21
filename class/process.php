@@ -1,26 +1,19 @@
 <?php
 	date_default_timezone_set(CONF['timezone']);
-	
+	/**
+	* This class is responsible for all the heavy-lifting throughout the application.
+	* It is the only class that interacts with the database and avails all the data used in the application.
+	* 
+	*/
 	class process{
 		private $PDO;
 		private $BLOWFISH;
 		public function __construct(){
+			// creates a single PHP PDO Object used throughout the application to interact with the database.
 			$PDO = new connection();
 			$this->PDO = $PDO->connect();
+			// initializes the component responsible for password encryption.
 			$this->BLOWFISH = new blowfish();
-		}
-		
-		public function show_index(){
-			$content = 
-			'<div class="container">
-				<div class="jumbotron">
-					<h1>Welcome to Shareride!</h1>
-					<p>You can find your ride and book it here.</p>
-					<p>You can also offer others a ride!</p>
-					<input class="btn btn-lg" type="submit" formaction="./?login" value="Join or Login today" />
-				</div>
-			</div>';
-			return $content;
 		}
 		
 		public function setSessionData(){
@@ -41,7 +34,7 @@
 			$stmt->execute([]);
 			$rides = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'ride', array_fill(0, 7, ''));
 			
-			//fetches all futures
+			//fetches all future rides
 			$stmt = $this->PDO->prepare('SELECT * FROM `tbl_ride` WHERE `status` = :status');
 			$stmt->execute(['status' => 0]);
 			$futurerides = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'ride', array_fill(0, 7, ''));
@@ -61,6 +54,9 @@
 			];
 		}
 		
+		/**
+		*	Creates a new user
+		*/
 		public function newUser($user){
 			try{
 				$stmt = $this->PDO->prepare(
@@ -87,7 +83,7 @@
 			}catch(PDOException $e){
 				$duplicate = 'Integrity constraint violation: 1062 Duplicate entry';
 				if(strpos($e->getMessage(), $duplicate) !== false){
-					//user exists already
+					//users exists already
 					return false;
 				} else {
 					//unable to register the user due to unknown reason/exception
@@ -129,7 +125,6 @@
 				}
 				return false;
 			} catch(PDOException $e){
-				//echo $e->getMessage();
 				return false;
 			}			
 		}
@@ -266,9 +261,9 @@
 			$mail->SMTPAuth = true;
 			$mail->Username = "auth.sharerideinc@gmail.com";
 			$mail->Password = "sharerideinc!2018!";
-			$mail->isSMTPSecure = "ssl";
+			$mail->isSMTPSecure = "ssl"; // can as well use tls
 			
-			//TODO: comment SMTP options when going live
+			//TODO: comment SMTP options when going live or set it to more secure values
 			$mail->SMTPOptions = [
 				'ssl' => [
 					'verify_peer' => false,

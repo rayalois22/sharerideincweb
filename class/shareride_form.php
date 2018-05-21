@@ -2,78 +2,72 @@
 	class shareride_form{
 		public function form_register(){
 			?>
-<div class="row">
-	<form class="form-group" action="./" method="post">
-		<center><h3><i><?= $_SESSION['reader']['newuser']['label'] ?></i></h3></center><hr />
-		<div class="col-sm-6">
-			<div class="form-group">
-				<label for="ufn"><?= $_SESSION['reader']['newuser']['firstname']['label'] ?>:</label>
-				<input class="form-control" type="text" name="<?= $_SESSION['reader']['newuser']['firstname']['name'] ?>" placeholder="John" required />
+			<div class="row">
+				<form class="form-group" action="./" method="post">
+					<center><h3><i><?= $_SESSION['reader']['newuser']['label'] ?></i></h3></center><hr />
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="ufn"><?= $_SESSION['reader']['newuser']['firstname']['label'] ?>:</label>
+							<input class="form-control" type="text" name="<?= $_SESSION['reader']['newuser']['firstname']['name'] ?>" placeholder="John" required />
+						</div>
+						<div class="form-group">
+							<label for="uln"><?= $_SESSION['reader']['newuser']['lastname']['label'] ?>:</label>
+							<input class="form-control" type="text" name="<?= $_SESSION['reader']['newuser']['lastname']['name'] ?>" placeholder="Doe" required />
+						</div>
+						<div class="form-group">
+							<label for="gender"><?= $_SESSION['reader']['newuser']['gender']['label'] ?>:</label>
+							<select class="form-control" name="<?= $_SESSION['reader']['newuser']['gender']['name'] ?>" required>
+								<option disabled selected value="">--SELECT--</option>
+								<option value="0">Male</option>
+								<option value="1">Female</option>
+								<option value="2">Other</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="uea"><?= $_SESSION['reader']['newuser']['email']['label'] ?>:</label>
+							<input id="uea" class="form-control" type="email" name="<?= $_SESSION['reader']['newuser']['email']['name'] ?>" placeholder="Email address" required />
+						</div>
+						<div class="form-group">
+							<label for="ut"><?= $_SESSION['reader']['newuser']['telephone']['label'] ?>:</label>
+							<input id="ut" class="form-control" type="tel" name="<?= $_SESSION['reader']['newuser']['telephone']['name'] ?>" placeholder="+254700123456" required />
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="up0"><?= $_SESSION['reader']['newuser']['password']['label'] ?></label>
+							<input class="form-control" type="password" name="<?= $_SESSION['reader']['newuser']['password']['name'] ?>" placeholder="Password" required />
+						</div>
+						<div class="form-group">
+							<label for="up0"><?= $_SESSION['reader']['newuser']['passwordc']['label'] ?></label>
+							<input class="form-control" type="password" name="<?= $_SESSION['reader']['newuser']['passwordc']['name'] ?>" placeholder="Password" required  />
+						</div>
+						<button type="submit" class="btn btn-primary btn-lg btn-block" name="<?= $_SESSION['reader']['newuser']['submit']['name'] ?>"><?= $_SESSION['reader']['newuser']['submit']['label'] ?></button>
+					</div>
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="uln"><?= $_SESSION['reader']['newuser']['lastname']['label'] ?>:</label>
-				<input class="form-control" type="text" name="<?= $_SESSION['reader']['newuser']['lastname']['name'] ?>" placeholder="Doe" required />
-			</div>
-			<div class="form-group">
-				<label for="gender"><?= $_SESSION['reader']['newuser']['gender']['label'] ?>:</label>
-				<select class="form-control" name="<?= $_SESSION['reader']['newuser']['gender']['name'] ?>" required>
-					<option disabled selected value="">--SELECT--</option>
-					<option value="0">Male</option>
-					<option value="1">Female</option>
-					<option value="2">Other</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="uea"><?= $_SESSION['reader']['newuser']['email']['label'] ?>:</label>
-				<input id="uea" class="form-control" type="email" name="<?= $_SESSION['reader']['newuser']['email']['name'] ?>" placeholder="Email address" required />
-			</div>
-			<div class="form-group">
-				<label for="ut"><?= $_SESSION['reader']['newuser']['telephone']['label'] ?>:</label>
-				<input id="ut" class="form-control" type="tel" name="<?= $_SESSION['reader']['newuser']['telephone']['name'] ?>" placeholder="+254700123456" required />
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="form-group">
-				<label for="up0"><?= $_SESSION['reader']['newuser']['password']['label'] ?></label>
-				<input class="form-control" type="password" name="<?= $_SESSION['reader']['newuser']['password']['name'] ?>" placeholder="Password" />
-			</div>
-			<div class="form-group">
-				<label for="up0"><?= $_SESSION['reader']['newuser']['passwordc']['label'] ?></label>
-				<input class="form-control" type="password" name="<?= $_SESSION['reader']['newuser']['passwordc']['name'] ?>" placeholder="Password" />
-			</div>
-			<button type="submit" class="btn btn-primary btn-lg btn-block" name="<?= $_SESSION['reader']['newuser']['submit']['name'] ?>"><?= $_SESSION['reader']['newuser']['submit']['label'] ?></button>
-		</div>
-	</form>
-</div>
 			<?php
 		}
 		
 		public function form_login(){
 			?>
-<div class="row">
-	<form class="form-group" action="./" method="post">
-		<center><h3><i><?= $_SESSION['reader']['login']['label'] ?></i></h3></center><hr />
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6">
-			<div class="form-group">
-				<label for="ule"><?= $_SESSION['reader']['login']['email']['label'] ?></label>
-				<input id="ule" class="form-control" type="email" name="<?= $_SESSION['reader']['login']['email']['name'] ?>" placeholder="johndoe@gmail.com" required />
+			<div class="row">
+				<form class="form-group" action="./" method="post">
+					<center><h3><i><?= $_SESSION['reader']['login']['label'] ?></i></h3></center><hr />
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="ule"><?= $_SESSION['reader']['login']['email']['label'] ?></label>
+							<input id="ule" class="form-control" type="email" name="<?= $_SESSION['reader']['login']['email']['name'] ?>" placeholder="johndoe@gmail.com" autofocus required />
+						</div>
+						<div class="form-group">
+							<label for="ulp"><?= $_SESSION['reader']['login']['password']['label'] ?></label>
+							<input id="ulp" class="form-control" type="password" name="<?= $_SESSION['reader']['login']['password']['name'] ?>" placeholder="......" required />
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" type="submit" name="<?= $_SESSION['reader']['login']['submit']['name'] ?>"><?= $_SESSION['reader']['login']['submit']['label'] ?></button>
+					</div>
+					<div class="col-sm-3"></div>
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="ulp"><?= $_SESSION['reader']['login']['password']['label'] ?></label>
-				<input id="ulp" class="form-control" type="password" name="<?= $_SESSION['reader']['login']['password']['name'] ?>" placeholder="......" required />
-			</div>
-			<button class="btn btn-primary btn-lg btn-block" type="submit" name="<?= $_SESSION['reader']['login']['submit']['name'] ?>"><?= $_SESSION['reader']['login']['submit']['label'] ?></button>
-		</div>
-		<div class="col-sm-3"></div>
-	</form>
-</div>
-			<?php
-		}
-		
-		public function form_new_vehicle(){
-			?>
-			
 			<?php
 		}
 		
@@ -135,7 +129,7 @@
 			<?php
 		}
 		
-		public function form_book_ride($rides, $grid = false){
+		public function form_book_ride($rides, $users, $vehicles, $grid = false){
 			if(!$grid){
 				//list view
 				?>
@@ -155,6 +149,7 @@
 								<tr>
 									<th><?= ucwords($_SESSION['reader']['ride']['origin']['label']) ?></th>
 									<th><?= ucwords($_SESSION['reader']['ride']['destination']['label']) ?></th>
+									<th><?= ucwords($_SESSION['reader']['vehicle']['capacity']['label']) ?></th>
 									<th><?= ucwords($_SESSION['reader']['ride']['driver']['label']), '(', ucwords($_SESSION['reader']['ride']['vehicle']['label']), ')' ?></th>
 									<th><?= 'Book' ?></th>
 								</tr>
@@ -164,20 +159,36 @@
 									<tr>
 										<td class="text-info">Oops, No ride has been given today!</td>
 									</tr>
-								<?php } else { foreach($rides as $ridek => $ride){ ?>
+								<?php } else { foreach($rides as $ridek => $ride){ 
+									//Gets the name of the driver
+									foreach($users as $ukey => $uval){
+										if($ride->GetDriver() == $uval->getId()){
+											$driverName = $uval->getFirstName() . ' ' . $uval->getLastName();
+										}
+									}
+									//Gets the capacity of the vehicle
+									foreach($vehicles as $vkey => $vval){
+										if($ride->getVehicle() == $vval->getRegNumber()){
+											$capacity = $vval->getCapacity();
+										}
+									}
+								?>
 									<tr>
 										<td><?= $ride->getOrigin() ?></td>
 										<td><?= $ride->getDestination() ?></td>
-										<td><?= $ride->getDriver(), '(', $ride->getVehicle(), ')' ?></td>
+										<td><?= $capacity ?></td>
+										<td><?= $driverName, '(', $ride->getVehicle(), ')' ?></td>
 										<td><?= '<a href="./?book=true&&id='. $ride->getId() . '" title="Book this ride"><img src="static/img/icons/book.png" width="20px" height="20px" /></a>'?></td>
 									</tr>
 								<?php }} ?>
 							</tbody>
 							<tfoot>
+								<!-- Shows footer headings only if the list is large enough -->
 								<?php if(sizeof($rides) > 5){ ?>
 									<tr>
 										<th><?= ucwords($_SESSION['reader']['ride']['origin']['label']) ?></th>
 										<th><?= ucwords($_SESSION['reader']['ride']['destination']['label']) ?></th>
+										<th><?= ucwords($_SESSION['reader']['vehicle']['capacity']['label']) ?></th>
 										<th><?= ucwords($_SESSION['reader']['ride']['driver']['label']), '(', ucwords($_SESSION['reader']['ride']['vehicle']['label']), ')' ?></th>
 										<th><?= 'BOOK' ?></th>
 									</tr>
@@ -187,7 +198,8 @@
 					</div>
 				<?php
 			} else {
-				
+				//Grid View
+				// TODO: Implement grid view
 			}
 		}
 	}

@@ -98,9 +98,99 @@
 			?>
 			</div>
 			</body>
-			<footer class="footer">
-				<?= '<p>' . CONF['site']['copyright'] . '</p>' ?>
+			<center>
+			<br /><br />
+			<footer class="footer" style="">
+				<?= '<p><font size="4">' . CONF['site']['copyright'] . '</font></p>' ?>
+				<br />
 			</footer>
+			</center>
+			<?php
+		}
+		
+		public function carousel_old(){
+			?>
+				<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img class="d-block w-100" src="..." alt="First slide">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block w-100" src="..." alt="Second slide">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block w-100" src="..." alt="Third slide">
+						</div>
+					</div>
+				</div>
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img class="d-block w-100" src="static/img/carousel/1.jpg" alt="First slide">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block w-100" src="static/img/carousel/2.jpg" alt="Second slide">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block w-100" src="static/img/carousel/3.jpg" alt="Third slide">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+					data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+					data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+				<div class="carousel-item">
+					<img src="static/img/carousel/5.jpg" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5>...</h5>
+						<p>...</p>
+					</div>
+				</div>
+			<?php
+		}
+		
+		public function welcome(){
+			?> 
+			<div class="row jumbotron">
+				<center><h3 class="btn btn-lg btn-block">Welcome to Shareride!</h3></center><hr />
+				<div class="col-sm-4">
+					<h1></h1>
+					<a class="btn btn-lg btn-block btn-info" href="./?signup">Sign Up</a>
+					<a class="btn btn-lg btn-block btn-info" href="./?login">Login</a>
+				</div>
+				<div class="col-sm-4">
+					<figure>
+						<img src="static/img/4.jpg" style="padding-top:20px; width:100%;height:100%;" />
+						<figcaption><p>Find and book your next ride!</p></figcaption>
+					</figure>
+					<figure>
+						<img src="static/img/5.jpg" style="padding-top:20px; width:100%;height:100%;" />
+						<figcaption><p>Receive the ride details in your email inbox!</p></figcaption>
+					</figure>
+				</div>
+				<div class="col-sm-4">
+					<figure>
+						<img src="static/img/6.jpg" style="padding-top:20px; width:100%;height:100%;" />
+						<figcaption><p>Contact your driver and, voila!! You're on your way</p></figcaption>
+					</figure>
+					<figure>
+						<img src="static/img/1.jpg" style="padding-top:20px; width:100%;height:100%;" />
+						<figcaption><p>You can give others a ride too!</p></figcaption>
+					</figure>
+				</div>
+			</div>
 			<?php
 		}
 	}
