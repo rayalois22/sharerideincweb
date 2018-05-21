@@ -3,7 +3,7 @@
 	* @author: rayalois
 	* 
 	*	Layout class presents the main template for the site.
-	*
+	*	It is responsible for the HTML markup (except forms) for the whole application.
 	*/
 	class layout{
 		
@@ -40,7 +40,7 @@
 			<?php
 		}
 		
-		public function shareride_navigation($authLinks = false, $showProfile = false, $user = null){
+		public function shareride_navigation($login = false, $showProfile = false, $user = null){
 			?>
 				<header>
 					<nav class="navbar-inverse">
@@ -54,14 +54,14 @@
 								<a class="navbar-brand" href="./"><?= CONF['site']['title'] ?></a>
 							</div>
 							<div class="collapse navbar-collapse" id="navbar">
-								<ul class="nav navbar-nav navbar-left">
-									<li><a href="./?about">About</a></li>
-									<li><a href="./?contact">Contact</a></li>
-								</ul>
-								
-								<?php if($authLinks){ ?>
+								<?php if($login && ($user== null)){ ?>
 									<ul class="nav navbar-nav navbar-right">
+										<!-- The user is viewing the login form, so we only show them the signup link -->
 										<li><a class="glyphicon glyphicon-user" href="./?signup">Sign Up</a></li>
+									</ul>
+								<?php } if(!$login){ ?>
+									<ul class="nav navbar-nav navbar-right">
+										<!-- The user is viewing the signup form, so we only show them the login link -->
 										<li><a class="glyphicon glyphicon-log-in" href="./?login">Login</a></li>
 									</ul>
 								<?php } if($showProfile && ($user != null)){?> 
@@ -72,19 +72,10 @@
 									</ul>
 								<?php } ?>
 								
-								<div class="nav navbar-nav navbar-right">
-									<!-- search box/form -->
-									<form class="navbar-form navbar-right" role="search" action="./" method="get">
-										<div class="input-group">
-											<input id="searchbox" type="text" name="s" placeholder="Search anything..." class="form-control" autofocus autocomplete="off" />
-											<div class="input-group-btn">
-												<button class="btn btn-default" type="submit">
-												<i id="searchicon" class="glyphicon glyphicon-search"></i>
-												</button>
-											</div>
-										</div>
-									</form>
-								</div>
+								<ul class="nav navbar-nav navbar-right">
+									<li><a href="./?about">About</a></li>
+									<li><a href="./?contact">Contact</a></li>
+								</ul>
 							</div>
 						</div>
 						</nav>
@@ -105,59 +96,6 @@
 				<br />
 			</footer>
 			</center>
-			<?php
-		}
-		
-		public function carousel_old(){
-			?>
-				<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img class="d-block w-100" src="..." alt="First slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="..." alt="Second slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="..." alt="Third slide">
-						</div>
-					</div>
-				</div>
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img class="d-block w-100" src="static/img/carousel/1.jpg" alt="First slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="static/img/carousel/2.jpg" alt="Second slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="static/img/carousel/3.jpg" alt="Third slide">
-						</div>
-					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-					data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-					data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-				<div class="carousel-item">
-					<img src="static/img/carousel/5.jpg" alt="...">
-					<div class="carousel-caption d-none d-md-block">
-						<h5>...</h5>
-						<p>...</p>
-					</div>
-				</div>
 			<?php
 		}
 		

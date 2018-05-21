@@ -140,7 +140,7 @@
 					
 					//creates a page to show the user
 					$this->View->shareride_head();
-					$this->View->shareride_navigation(false, true, $this->User);
+					$this->View->shareride_navigation(true, true, $this->User);
 					if(isset($_GET['give-a-ride'])){
 						$vehicles = [];
 						foreach($this->Data['vehicles'] as $vk => $vv){
@@ -162,6 +162,7 @@
 						$SF->form_book_ride($this->Data['futurerides'], $this->Data['users'], $this->Data['vehicles']);
 						$this->View->shareride_footer();
 					}
+					
 					$this->View->shareride_footer();
 					
 					
@@ -189,6 +190,7 @@
 							$this->View->shareride_head();
 							$this->View->shareride_navigation(true);
 							echo 'Failed to register!';
+						
 							$this->View->shareride_footer();
 						} else {
 							//registration successful
@@ -228,17 +230,27 @@
 					} else {
 						// shows a different page if the user is not logged in.
 						$this->View->shareride_head();
-						$this->View->shareride_navigation(true);
+						$login = isset($_GET['login']);
 						if(!isset($_GET['signup']) && !isset($_GET['login'])){
+							//presents the navigation bar
+							$this->View->shareride_navigation();
+							//presents the welcome information to the user
 							$this->View->welcome();
 						}
 						if(isset($_GET['signup'])){
+							//presents the navigation bar
+							$this->View->shareride_navigation($login);
 							//presents the registration form
 							$SF->form_register();
 						}
 						if(isset($_GET['login'])){
+							//presents the navigation bar
+							$this->View->shareride_navigation($login);
 							// presents the login form
 							$SF->form_login();
+						}
+						if(isset($_GET['contact'])){
+							$SF->form_contact();
 						}
 						$this->View->shareride_footer();
 					}					

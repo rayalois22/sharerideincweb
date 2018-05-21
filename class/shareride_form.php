@@ -71,6 +71,15 @@
 			<?php
 		}
 		
+		public function form_contact(){
+			?>
+				<div class="row">
+					<p>You can <a href="tel:<?= CONF['site']['adminPhone'] ?>"><?= 'call' ?></a>
+					&nbsp;or&nbsp;<a href="mailto:<?= CONF['site']['adminEmail'] ?>"><?= 'email' ?></a>&nbsp;us.We do respond, promise!</p>
+				</div>
+			<?php
+		}
+		
 		public function form_new_ride($vehicles){
 			?>
 			<br /><br />
