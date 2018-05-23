@@ -99,7 +99,7 @@
 							if($contact){?>
 									<p>Let's talk. You can <a href="tel:<?= CONF['site']['adminPhone'] ?>"><?= '<font size="8" color="#ff0000">call</font>' ?></a> or <a href="mailto:<?= CONF['site']['adminEmail'] ?>"><?= '<font size="8" color="#ff0000">email</font>' ?></a> us!</p>
 							<?php } else {?>
-								<p>Let's talk. You can <a href="tel:<?= CONF['site']['adminPhone'] ?>"><?= 'call' ?></a> or <a href="mailto:<?= CONF['site']['adminEmail'] ?>"><?= 'email' ?></a> us!</p>
+								<!-- <p>Let's talk. You can <a href="tel:<?= CONF['site']['adminPhone'] ?>"><?= 'call' ?></a> or <a href="mailto:<?= CONF['site']['adminEmail'] ?>"><?= 'email' ?></a> us!</p> -->
 							<?php }
 						?>
 					</div>
