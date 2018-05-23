@@ -16,6 +16,16 @@
 			$this->BLOWFISH = new blowfish();
 		}
 		
+		/**
+		* Ensures all user submitted data is safe for viewing in an email or a web page.
+		*/
+		public function safeInput($input){
+			$data = trim($input);
+			$data = stripslashes($data);
+			$data = htmlspecialchars($data);
+			return $data;
+		}
+		
 		public function setSessionData(){
 			// fetches all users
 			$stmt = $this->PDO->prepare('SELECT * FROM tbl_user');
@@ -149,7 +159,7 @@
 				$duplicate = 'Integrity constraint violation: 1062 Duplicate entry';
 				if(strpos($e->getMessage(), $duplicate) !== false){
 					//vehicle already exists. 
-					// return false so $CTRL knows to check if it belongs to the currently logged in user.
+					// check whether it belongs to this user and whether the origin and destination are different before creating new ride.
 					return false;
 				} else {
 					//unable to register the vehicle due to unknown reason/exception

@@ -85,17 +85,33 @@
 			<?php
 		}
 		
-		public function shareride_footer(){
+		public function shareride_footer($contact = false){
 			?>
 			</div>
-			</body>
-			<center>
-			<br /><br />
-			<footer class="footer" style="">
-				<?= '<p><font size="4">' . CONF['site']['copyright'] . '</font></p>' ?>
+			<div class="container">
 				<br />
+				<br />
+			</div>
+			<footer class="footer">
+				<div class="row">
+					<div id="contact" class="col-sm-4">
+						<?php 
+							if($contact){?>
+									<p>Let's talk. You can <a href="tel:<?= CONF['site']['adminPhone'] ?>"><?= '<font size="8" color="#ff0000">call</font>' ?></a> or <a href="mailto:<?= CONF['site']['adminEmail'] ?>"><?= '<font size="8" color="#ff0000">email</font>' ?></a> us!</p>
+							<?php } else {?>
+								<p>Let's talk. You can <a href="tel:<?= CONF['site']['adminPhone'] ?>"><?= 'call' ?></a> or <a href="mailto:<?= CONF['site']['adminEmail'] ?>"><?= 'email' ?></a> us!</p>
+							<?php }
+						?>
+					</div>
+					<div class="col-sm-4">
+						<?= '<p>' . CONF['site']['copyright'] . '</p>' ?>
+					</div>
+					<div class="col-sm-4"><br /></div>
+					<br /><br />
+				</div>
 			</footer>
-			</center>
+			</body>
+			</html>
 			<?php
 		}
 		

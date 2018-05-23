@@ -3,12 +3,23 @@
 		public function form_register(){
 			?>
 			<div class="row">
-				<form class="form-group" action="./" method="post">
+				<?php
+				// the names needed for input validation in JavaScript
+				$names = 
+				'firstname::'.$_SESSION['reader']['newuser']['firstname']['name'].
+				'||lastname::'.$_SESSION['reader']['newuser']['lastname']['name'].
+				'||gender::'.$_SESSION['reader']['newuser']['gender']['name'].
+				'||email::'.$_SESSION['reader']['newuser']['email']['name'].
+				'||telephone::'.$_SESSION['reader']['newuser']['telephone']['name'].
+				'||password::'.$_SESSION['reader']['newuser']['firstname']['name'].
+				'||passwordc::'.$_SESSION['reader']['newuser']['firstname']['name'];
+				?>
+				<form class="form-group" name="signup" action="./" method="post" onsubmit="return validateSignup(this, '<?= $names ?>');">
 					<center><h3><i><?= $_SESSION['reader']['newuser']['label'] ?></i></h3></center><hr />
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="ufn"><?= $_SESSION['reader']['newuser']['firstname']['label'] ?>:</label>
-							<input class="form-control" type="text" name="<?= $_SESSION['reader']['newuser']['firstname']['name'] ?>" placeholder="John" required />
+							<input class="form-control" type="text" name="<?= $_SESSION['reader']['newuser']['firstname']['name'] ?>" placeholder="John" autofocus required />
 						</div>
 						<div class="form-group">
 							<label for="uln"><?= $_SESSION['reader']['newuser']['lastname']['label'] ?>:</label>
@@ -51,7 +62,13 @@
 		public function form_login(){
 			?>
 			<div class="row">
-				<form class="form-group" action="./" method="post">
+				<?php 
+				// the names needed for input validation by JavaScript, just incase we have to validate the login form input
+				$names = 
+				'email::'.$_SESSION['reader']['login']['email']['name'].
+				'||password::'.$_SESSION['reader']['login']['password']['name'];
+				?>
+				<form class="form-group" name="login" action="./" method="post" onsubmit="event.preventDefault(); validateLogin(event, this, '<?= $name ?>')">
 					<center><h3><i><?= $_SESSION['reader']['login']['label'] ?></i></h3></center><hr />
 					<div class="col-sm-3"></div>
 					<div class="col-sm-6">
@@ -92,7 +109,16 @@
 			</div>
 			<br /><br />
 			<div class="row">
-				<form class="form-group" action="./" method="post">
+				<?php 
+				// the names needed for input validation in JavaScript, for validation of new ride information input
+				$names = 
+				'origin::'.$_SESSION['reader']['ride']['origin']['name'].
+				'||destination::'.$_SESSION['reader']['ride']['destination']['name'].
+				'||regnumber::'.$_SESSION['reader']['newuser']['firstname']['name'].
+				'||model::'.$_SESSION['reader']['newuser']['firstname']['name'].
+				'||capacity::'.$_SESSION['reader']['newuser']['firstname']['name'];
+				?>
+				<form class="form-group" name="newride" action="./" method="post" onsubmit="validateRide(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['ride']['label'] ?></i></h3></center><hr />
 					<div class="col-sm-6">
 						<div class="form-group">
