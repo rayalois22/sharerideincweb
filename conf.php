@@ -16,6 +16,8 @@
 		'timezone' => 'Africa/Nairobi',
 		'site' => [
 			'title' => 'Shareride Inc.',
+			'adminEmail' => 'auth.sharerideinc@gmail.com',
+			'adminPhone' => '+254706962666',
 		],
 	];
 	// obtains the CLEARDB database credentials on Heroku.
@@ -25,12 +27,5 @@
 	//$CONF['db']['url'] = ['host' => 'localhost','user' => 'root','pass' => 'root','path' => '0shareride',];
 	
 	$CONF['site']['copyright'] = 'Copyright &copy;' . date('Y') . ' - ' . $CONF['site']['title'];
-	$CONF['site']['url'] = 'https://sharerideincweb.herokuapp.com';
-	
-	//host: us-cdbr-iron-east-04.cleardb.net
-	//database: heroku_b48f610ebfce970
-	//Username:	bbe6013ca3a5d2
-	//Password:	032ad7c9 (Reset)
-	// mysql://bbe6013ca3a5d2:032ad7c9@us-cdbr-iron-east-04.cleardb.net/heroku_b48f610ebfce970?reconnect=true
-	
+	$CONF['site']['url'] = 'https://sharerideincweb.herokuapp.com';	
 ?>
