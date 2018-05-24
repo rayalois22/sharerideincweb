@@ -6,15 +6,15 @@
 				<?php
 				// the names needed for input validation in JavaScript
 				$names = 
-				'firstname::'.$_SESSION['reader']['newuser']['firstname']['name'].
-				'||lastname::'.$_SESSION['reader']['newuser']['lastname']['name'].
-				'||gender::'.$_SESSION['reader']['newuser']['gender']['name'].
-				'||email::'.$_SESSION['reader']['newuser']['email']['name'].
-				'||telephone::'.$_SESSION['reader']['newuser']['telephone']['name'].
-				'||password::'.$_SESSION['reader']['newuser']['firstname']['name'].
-				'||passwordc::'.$_SESSION['reader']['newuser']['firstname']['name'];
+				$_SESSION['reader']['newuser']['firstname']['label'].'::'.$_SESSION['reader']['newuser']['firstname']['name'].
+				'||'.$_SESSION['reader']['newuser']['lastname']['label'].'::'.$_SESSION['reader']['newuser']['lastname']['name'].
+				'||'.$_SESSION['reader']['newuser']['gender']['label'].'::'.$_SESSION['reader']['newuser']['gender']['name'].
+				'||'.$_SESSION['reader']['newuser']['email']['label'].'::'.$_SESSION['reader']['newuser']['email']['name'].
+				'||'.$_SESSION['reader']['newuser']['telephone']['label'].'::'.$_SESSION['reader']['newuser']['telephone']['name'].
+				'||'.$_SESSION['reader']['newuser']['password']['label'].'::'.$_SESSION['reader']['newuser']['password']['name'].
+				'||'.$_SESSION['reader']['newuser']['passwordc']['label'].'::'.$_SESSION['reader']['newuser']['passwordc']['name'];
 				?>
-				<form class="form-group" name="signup" action="./" method="post" onsubmit="return validateSignup(this, '<?= $names ?>');">
+				<form class="form-group" name="signup" action="./" method="post" onsubmit="return validateSignup(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['newuser']['label'] ?></i></h3></center><hr />
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -52,6 +52,7 @@
 							<label for="up0"><?= $_SESSION['reader']['newuser']['passwordc']['label'] ?></label>
 							<input class="form-control" type="password" name="<?= $_SESSION['reader']['newuser']['passwordc']['name'] ?>" placeholder="Password" required  />
 						</div>
+						<div id="notify_signup" style="display:none;"></div>
 						<button type="submit" class="btn btn-primary btn-lg btn-block" name="<?= $_SESSION['reader']['newuser']['submit']['name'] ?>"><?= $_SESSION['reader']['newuser']['submit']['label'] ?></button>
 					</div>
 				</form>
@@ -65,10 +66,10 @@
 				<?php 
 				// the names needed for input validation by JavaScript, just incase we have to validate the login form input
 				$names = 
-				'email::'.$_SESSION['reader']['login']['email']['name'].
-				'||password::'.$_SESSION['reader']['login']['password']['name'];
+				$_SESSION['reader']['login']['email']['label'].'::'.$_SESSION['reader']['login']['email']['name'].
+				'||'.$_SESSION['reader']['login']['password']['label'].'::'.$_SESSION['reader']['login']['password']['name'];
 				?>
-				<form class="form-group" name="login" action="./" method="post" onsubmit="event.preventDefault(); validateLogin(event, this, '<?= $name ?>')">
+				<form class="form-group" name="login" action="./" method="post" onsubmit="return validateLogin(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['login']['label'] ?></i></h3></center><hr />
 					<div class="col-sm-3"></div>
 					<div class="col-sm-6">
@@ -80,6 +81,7 @@
 							<label for="ulp"><?= $_SESSION['reader']['login']['password']['label'] ?></label>
 							<input id="ulp" class="form-control" type="password" name="<?= $_SESSION['reader']['login']['password']['name'] ?>" placeholder="......" required />
 						</div>
+						<div id="notify_login" style="display:none;"></div>
 						<button class="btn btn-primary btn-lg btn-block" type="submit" name="<?= $_SESSION['reader']['login']['submit']['name'] ?>"><?= $_SESSION['reader']['login']['submit']['label'] ?></button>
 					</div>
 					<div class="col-sm-3"></div>
@@ -112,13 +114,13 @@
 				<?php 
 				// the names needed for input validation in JavaScript, for validation of new ride information input
 				$names = 
-				'origin::'.$_SESSION['reader']['ride']['origin']['name'].
-				'||destination::'.$_SESSION['reader']['ride']['destination']['name'].
-				'||regnumber::'.$_SESSION['reader']['newuser']['firstname']['name'].
-				'||model::'.$_SESSION['reader']['newuser']['firstname']['name'].
-				'||capacity::'.$_SESSION['reader']['newuser']['firstname']['name'];
+				$_SESSION['reader']['ride']['origin']['label'].'::'.$_SESSION['reader']['ride']['origin']['name'].
+				'||'.$_SESSION['reader']['ride']['destination']['label'].'::'.$_SESSION['reader']['ride']['destination']['name'].
+				'||'.$_SESSION['reader']['vehicle']['regnumber']['label'].'::'.$_SESSION['reader']['vehicle']['regnumber']['name'].
+				'||'.$_SESSION['reader']['vehicle']['model']['label'].'::'.$_SESSION['reader']['vehicle']['model']['name'].
+				'||'.$_SESSION['reader']['vehicle']['capacity']['label'].'::'.$_SESSION['reader']['vehicle']['capacity']['name'];
 				?>
-				<form class="form-group" name="newride" action="./" method="post" onsubmit="validateRide(event, this, '<?= $names ?>')">
+				<form class="form-group" name="newride" action="./" method="post" onsubmit="return validateRide(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['ride']['label'] ?></i></h3></center><hr />
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -158,6 +160,7 @@
 							</div>
 						</div>
 					</div>
+					<div id="notify_ride" style="display:none;"></div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit" name="<?= $_SESSION['reader']['ride']['submit']['name'] ?>"><?= $_SESSION['reader']['ride']['submit']['label'] ?></button>
 				</form>
 			</div>
