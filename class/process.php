@@ -77,7 +77,7 @@
 				);
 				$stmt->execute([
 					'id'	=> $user->getId(),
-					'firstname' => $user->getFirstName(),
+					'firstname' => $user->getfirstName(),
 					'lastname'	=> $user->getLastName(),
 					'gender' 	=> $user->getGender(),
 					'password'	=> $this->BLOWFISH->encrypt_password($user->getPassword()),
