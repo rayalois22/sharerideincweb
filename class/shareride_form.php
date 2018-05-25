@@ -16,6 +16,7 @@
 				?>
 				<form class="form-group" name="signup" action="./" method="post" onsubmit="return validateSignup(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['newuser']['label'] ?></i></h3></center><hr />
+					<div id="notify"></div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="ufn"><?= $_SESSION['reader']['newuser']['firstname']['label'] ?>:</label>
@@ -71,6 +72,7 @@
 				?>
 				<form class="form-group" name="login" action="./" method="post" onsubmit="return validateLogin(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['login']['label'] ?></i></h3></center><hr />
+					<div id="notifySignup"></div>
 					<div class="col-sm-3"></div>
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -122,6 +124,7 @@
 				?>
 				<form class="form-group" name="newride" action="./" method="post" onsubmit="return validateRide(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['ride']['label'] ?></i></h3></center><hr />
+					<div id="notifyRide"></div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<div class="form-group">
@@ -160,7 +163,6 @@
 							</div>
 						</div>
 					</div>
-					<div id="notify_ride" style="display:none;"></div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit" name="<?= $_SESSION['reader']['ride']['submit']['name'] ?>"><?= $_SESSION['reader']['ride']['submit']['label'] ?></button>
 				</form>
 			</div>
@@ -181,6 +183,7 @@
 					
 					<br /><br />
 					<center><h3><u><?php echo $_SESSION['reader']['ride']['labelfuture'] ?></u><h3></center>
+					<div id="notifyBooking"></div>
 					<div class="table-responsive">
 						<table class="table table-hover bordered">
 							<thead>
