@@ -16,7 +16,7 @@
 				?>
 				<form class="form-group" name="signup" action="./" method="post" onsubmit="return validateSignup(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['newuser']['label'] ?></i></h3></center><hr />
-					<div id="notify"></div>
+					<div id="notifySignup"></div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="ufn"><?= $_SESSION['reader']['newuser']['firstname']['label'] ?>:</label>
