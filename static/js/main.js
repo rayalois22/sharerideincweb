@@ -101,22 +101,25 @@ function vehicleSelector(sel){
 	document.getElementById("rvcap").value = vehicle[2];	
 }
 
-function notifyE(f, message){
-	var ele = document.createElement('div');
-	ele.id = 'notif';
-	ele.textContent = message;
-	ele.className = 'alert alert-warning';
-	ele.style.display = 'inline';
-	f.appendChild(ele);
+function notifyE(id, message){	
+	var notify = document.getElementById(id);
+	notify.textContent = message;
+	notify.className = 'alert alert-warning';
+	notify.style.display = 'block';
 }
-function notifyS(f, message){
-	var ele = document.createElement('div');
-	ele.id = 'notif';
-	ele.textContent = message;
-	ele.className = 'alert alert-success';
-	//ele.style.display = 'block';
-	f.appendChild(ele);
+function notifyS(id, message){
+	var notify = document.getElementById(id);
+	notify.textContent = message;
+	notify.className = 'alert alert-warning form-control';
+	notify.style.display = 'block';
 }
+function notifyReset(id){
+	var notify = document.getElementById(id);
+	notify.textContent = '';
+	notify.className = '';
+	notify.style.display = 'none';
+}
+
 /**
 * Checks for valid signup details.
 *
@@ -126,6 +129,11 @@ function notifyS(f, message){
 *@param names a string containing all input labels and names
 */
 function validateSignup(e, f, names){
+	//disable the default behaviour of the form so that we can decide whether or not to submit it
+	e.preventDefault();
+	//notify id
+	var nid = "notifySignup";
+		
 	var names = names.split("||");	
 	var len = names.length;
 	var passwordName = '';
@@ -138,37 +146,40 @@ function validateSignup(e, f, names){
 		var el = document.getElementsByName(name)[0];
 		var elementValue = el.value.trim();
 		
+		//resets any previous notification
+		notifyReset(nid);
+		
 		//If any of the inputs is empty, do not submit the form to the server
 		if(elementValue == ''){
-			notifyE(f, label + ' cannot be empty!');
+			notifyE(nid, label + ' cannot be empty!');
 			return false;
 		}
 		
 		if(label == 'First name'){
 			//validate firstname
 			if(!validateName(elementValue)){
-				notifyE(f, label + ' must be a valid name!');
+				notifyE(nid, label + ' must be a valid name!');
 				return false;
 			}
 		}
 		if(label == 'Last name'){
 			//validate lastname
 			if(!validateName(elementValue)){
-				notifyE(f, label + ' must be a valid name!');
+				notifyE(nid, label + ' must be a valid name!');
 				return false;
 			}
 		}
 		if(label == 'Email address'){
 			//validate email address
 			if(!validateEmailAddress(elementValue)){
-				notifyE(f, label + ' must be a valid email address!');
+				notifyE(nid, label + ' must be a valid email address!');
 				return false;
 			}
 		}
 		if(label == 'Telephone'){
 			//validate telephone
 			if(!validateTelephone(elementValue)){
-				notifyE(f, label + ' must be a valid email address!');
+				notifyE(nid, label + ' must be a valid phone number!');
 				return false;
 			}
 		}
@@ -183,12 +194,12 @@ function validateSignup(e, f, names){
 	}
 	//ensure passwords match
 	if(password0 != password1){
-		notifyE(f, 'Passwords must match!');
+		notifyE(nid, 'Passwords must match!');
 		return false;
 	}
 	//ensure strong passwords
 	if(!validatePassword(password0)){
-		notifyE(f, 'A valid password must be at least 8 characters long and be alphanumeric');
+		notifyE(nid, 'A valid password must be at least 8 characters long and be alphanumeric');
 		return false;
 	}
 	
@@ -240,6 +251,11 @@ function validateVehicleCapacity(capacity){
 * Checks for valid ride details.
 */
 function validateRide(e, f, names){
+	//prevent default form submission behaviour
+	e.preventDefault();
+	
+	var nid = "notifyRide";
+	
 	var names = names.split("||");	
 	var len = names.length;
 	
@@ -250,44 +266,47 @@ function validateRide(e, f, names){
 		var el = document.getElementsByName(name)[0]; //HTML element
 		var elementValue = el.value.trim();
 		
+		//resets any previous notification
+		notifyReset(nid);
+		
 		if(el.value.trim() != ''){
 			if(label == 'Origin'){
 				//origin must be at least 3 digits long
 				if(elementValue.length < 3){
-					alert(label + ' invalid!');
+					notifyE(nid, label + ' invalid!');
 					return false;
 				}	
 			}
 			if(label == 'Destination'){
 				//destination must be at least 3 digits long
 				if(elementValue.length < 3){
-					alert(label + ' invalid!');
+					notifyE(nid, label + ' invalid!');
 					return false;
 				}				
 			}
 			if(label == 'Number plate'){
 				if(!validateVehicleRegNumber(elementValue)){
-					alert(label + ' invalid:' + elementValue);
+					notifyE(nid, label + ' invalid:' + elementValue);
 					return false;
 				}
 			}
 			if(label == 'Model'){
 				//model must be at least 3 digits long
 				if(elementValue.length < 3){
-					alert(label + ' invalid!');
+					notifyE(nid, label + ' invalid!');
 					return false;
 				}	
 			}
 			if(label == 'Capacity'){
 				//capacity must be a non-zero positive integer with no leading zero
 				if(!validateVehicleCapacity(elementValue)){
-					alert(label + ' invalid!');
+					notifyE(nid, label + ' invalid!');
 					return false;
 				}
 			}
 		} else {
 			//empty field not allowed.
-			alert(label + ' invalid!');
+			notifyE(nid, label + ' cannot be empty!');
 			return false;
 		}
 	}
