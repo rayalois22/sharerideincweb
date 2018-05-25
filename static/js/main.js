@@ -130,7 +130,7 @@ function notifyReset(id){
 */
 function validateSignup(e, f, names){
 	//disable the default behaviour of the form so that we can decide whether or not to submit it
-	e.preventDefault();
+	//e.preventDefault();
 	//notify id
 	var nid = "notifySignup";
 		
@@ -252,7 +252,7 @@ function validateVehicleCapacity(capacity){
 */
 function validateRide(e, f, names){
 	//prevent default form submission behaviour
-	e.preventDefault();
+	//e.preventDefault();
 	
 	var nid = "notifyRide";
 	
@@ -269,7 +269,7 @@ function validateRide(e, f, names){
 		//resets any previous notification
 		notifyReset(nid);
 		
-		if(el.value.trim() != ''){
+		if(elementValue != ''){
 			if(label == 'Origin'){
 				//origin must be at least 3 digits long
 				if(elementValue.length < 3){
@@ -286,7 +286,7 @@ function validateRide(e, f, names){
 			}
 			if(label == 'Number plate'){
 				if(!validateVehicleRegNumber(elementValue)){
-					notifyE(nid, label + ' invalid:' + elementValue);
+					notifyE(nid, label + ' is not valid');
 					return false;
 				}
 			}
