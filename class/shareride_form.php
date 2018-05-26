@@ -85,6 +85,7 @@
 						</div>
 						<div id="notify_login" style="display:none;"></div>
 						<button class="btn btn-primary btn-lg btn-block" type="submit" name="<?= $_SESSION['reader']['login']['submit']['name'] ?>"><?= $_SESSION['reader']['login']['submit']['label'] ?></button>
+						<a href="#">Forgot password?</a>
 					</div>
 					<div class="col-sm-3"></div>
 				</form>
@@ -101,7 +102,7 @@
 			<?php
 		}
 		
-		public function form_new_ride($vehicles){
+		public function form_new_ride($vehicles, $errorMessage = null){
 			?>
 			<br /><br />
 			<!-- Links to give or find a ride -->
@@ -124,7 +125,12 @@
 				?>
 				<form class="form-group" name="newride" action="./" method="post" onsubmit="return validateRide(event, this, '<?= $names ?>')">
 					<center><h3><i><?= $_SESSION['reader']['ride']['label'] ?></i></h3></center><hr />
-					<div id="notifyRide"></div>
+					<div id="notifyRide" <?php if($errorMessage != null){
+						//the server sent some error message we need to display
+						?>class="alert alert-warning"<?php
+					} ?> ><?php if($errorMessage != null){
+						echo $errorMessage;
+					} ?></div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<div class="form-group">
