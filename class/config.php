@@ -18,6 +18,8 @@
 			$db_fields = ["DSN", "USER", "PASS", "OPT"];
 			$db_args = array_combine($db_fields, $db_args);
 			define("DB_PARAMS", $db_args);
+			//TODO: Remove
+			file_put_contents('/dbinfo.txt', $CONF);
 		}
 		private function site_conf($CONF){
 			define("CONF", [
