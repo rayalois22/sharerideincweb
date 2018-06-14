@@ -19,7 +19,7 @@
 			$db_args = array_combine($db_fields, $db_args);
 			define("DB_PARAMS", $db_args);
 			//TODO: Remove
-			echo DB_PARAMS;
+			var_dump(DB_PARAMS);
 		}
 		private function site_conf($CONF){
 			define("CONF", [
