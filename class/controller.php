@@ -365,6 +365,7 @@ $this->View->shareride_head();
 $this->View->shareride_navigation();
 //presents the welcome information to the user
 $this->View->welcome();
+var_dump(DB_PARAMS);
 						}
 						if(isset($_GET['signup'])){
 //presents the navigation bar
